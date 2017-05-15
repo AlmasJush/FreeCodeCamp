@@ -1,0 +1,86 @@
+<html>
+<head>
+<script src ='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script>
+$(document).ready(function(){
+	//Free code camp stream info and status api call, https://wind-bow.gomix.me/twitch-api/streams/freecodecamp
+	// the streaming one is : https://wind-bow.glitch.me/twitch-api/streams/OgamingSC2
+	// followers : https://wind-bow.glitch.me/twitch-api/users/freecodecamp/follows/channels/
+
+	/*	var url = 'https://wind-bow.gomix.me/twitch-api/streams/freecodecamp';
+	$.getJSON(url, function(json){
+		
+		if(json.stream === null){
+			$('#fccStatus').html("Free Code Camp Currently OFFLINE");
+		}else{
+			$('#fccStatus').html("Free Code Camp Currently OnLINE");
+		}
+	});
+*/
+
+	var followersURL = "https://wind-bow.glitch.me/twitch-api/users/freecodecamp/follows/channels/";
+	$.getJSON(followersURL, function(json2){
+		
+		for(var i=0; i<json2.follows.length; i++){
+		
+		var displayName = json2.follows[i].channel.display_name;
+		
+		$('dName').append("<div class='row'>" + displayName + "</div>");
+		
+		}
+	});
+	
+	
+}); // document.ready.function
+
+</script>
+<style>
+body{
+background-color: lightgrey;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+	<div id="header" class="text-center">
+		<h1>TwitchTV JSON API APPLICATION</h1>
+		<h2>Free Code Camp</h2>
+		<a href="https://www.twitch.tv/freecodecamp" target="blank"><h3 id="fccStatus"></h3> </a>
+		
+		
+	</div>
+	<div class="row">
+		<h1>
+		<div class="col-md-4">Logo:</div>
+		<div class="col-md-4" id="dName">Display Name: </div>
+		<div class="col-md-4">Status:</div>
+		</h1>
+	</div>
+	
+ 
+</div>
+
+
+
+
+</body>
+
+<html>
+<!-- 
+1. User Story: I can see whether Free Code Camp is currently streaming on Twitch.tv
+2. User Story: I can click the status output and be sent directly to the Free Code Camp's Twitch.tv channel
+3. User Story: if a Twitch user is currently streaming, I can see additional details about what they are streaming
+4. User Story: I will see a placeholder notification if a streamer has closed their Twitch account (or the account never existed). You can verify this works by adding brunofin and comster404 to your array of Twitch streamers.
+1. Hint: Here's an array of the Twitch.tv usernames of people who regularly stream: ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"]
+2. Hint: See an example call to Twitch.tv's JSONP API at http://forum.freecodecamp.com/t/use-the-twitchtv-json-api/19541.
+3. Hint: The relevant documentation about this API call is here: https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md#get-streamschannel.
+4. UPDATE: Due to a change in conditions on API usage explained here Twitch.tv now requires an API key, but we've built a workaround. Use https://wind-bow.gomix.me/twitch-api instead of twitch's API base URL (i.e. https://api.twitch.tv/kraken ) and you'll still be able to get account information, without needing to sign up for an API key.
+
+"https://api.twitch.tv/kraken/streams '+ following[i] + '/?callback=?"
+<i class="icon-ban-circle"></i> icon-ban-circle for error
+
+-->

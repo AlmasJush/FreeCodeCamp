@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+   $(document).ready(function(){
+	
+	var twitQuotes
+	
+	function quotes(){
+		
+		var randQuotes = ["Q1 -A1","Q2 -A2","Q3 -A3","Q4 -A4","Q5 -A5"]; 
+		
+		var randNum = Math.floor(Math.random()*(randQuotes.length));
+		
+		twitQuotes = randQuotes[randNum];
+		
+		$(".message").text(twitQuotes);
+	}
+	
+	$("#newQuote").on("click", function(){
+		quotes();
+	});
+	
+	$("#twit").on("click", function(){
+		window.open("https://twitter.com/intent/tweet?text="+twitQuotes);
+	});
+	
+   });
+      
+</script>
+<style>
+	h2{
+		margin-top: 10%;
+		text-align: center;
+	}
+	.well{
+		height: 100%;
+		width: 100%;
+		background-color: #87CEEB;
+	}
+	#twit{
+		margin-left:auto;
+	}
+	#newQuote{
+	
+		margin-right: 20px;
+	}
+	#quoteWell{
+		width: 80%;
+	}
+	
+</style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row text-primary">
+	<h2><strong>Welcome to Random Quote Machine</strong></h2>
+  </div>
+  
+  <div class="row">
+	<div id="quoteWell" class="well col-xs-4 text-center">
+	<p class="message"><strong>Quote goes Here</strong></p>
+	</div>
+  </div>
+  
+  <div class="row text-center">
+	<div id="weBtn" class="col-xs-4">
+		<button id="newQuote" class="btn btn-primary">New Quote</button>
+		<button id="twit" class="btn btn-primary btn-responsive"><i class="fa fa-twitter" area-hidden="true"></i></button>
+	
+	<div class="text-center text-info">
+	    <p><strong>By ALMAS</strong></p> </div>
+	</div>
+  </div>
+  
+</div>
+</body>
+</html>

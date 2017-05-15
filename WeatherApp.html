@@ -1,0 +1,200 @@
+<!doctype html>
+
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.css">
+
+<script>
+	$(document).ready(function(){
+  var lat, lon, winfo, city, temp, wspeed, ctemp, ftemp, tempToggle;
+ if(navigator.geolocation){
+   navigator.geolocation.getCurrentPosition(function(position){
+   lat = position.coords.latitude;
+     lon = position.coords.longitude;
+    var wUrl = "http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid=cdb2c1e87ecc3c76139f393c3b0b127e"
+    
+    $.getJSON(wUrl, function(loc){
+       wInfo = loc.weather[0].main;
+       city = loc.name;
+       temp = loc.main.temp;
+       wspeed = loc.wind.speed;
+       ctemp = (temp - 273).toFixed();
+       ftemp = (9/5*ctemp+32).toFixed();
+      //console.log(ctemp);
+       tempToggle = true;
+      $("#loc").html(city);
+      $("#wInfo").html(wInfo);
+      $("#wspeed").html(wspeed);
+      $("#tempT").html(ftemp + " &degF");
+      
+      $("#tempT").click(function(){
+        if(tempToggle == false){
+          $("#tempT").html(ctemp + " &degC");
+          tempToggle = true;
+        }else{
+          $("#tempT").html(ftemp + " &degF");
+          tempToggle = false;
+        }
+      });
+	  
+	if(ftemp > 70){
+		$('body').css('background-image', 'url(https://static.pexels.com/photos/4022/cold-snow-forest-trees.jpeg)');
+	} else if(ftemp > 60){
+		$('body').css('background-image', 'url()');
+	}
+	  
+  }); // getJSON
+   }); // getCurrent Position 
+ }
+  
+}); // document ready
+	
+</script>
+<style>
+body{
+ 
+}
+#loc,#wInfo,#tempT,#wspeed{
+  color: #FF8C00;
+}
+</style>
+</head>
+
+<body>
+<div class="container text-center">
+<p id="loc"></p>
+  <p id="wInfo"></p>
+  <div id=tempT class="btn btn-default">
+  </div>
+  <p id="wspeed"></p>
+  <p id="showicon"></p>
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<html>
+<head>
+<title>My Weather App</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"></script>
+<script>
+
+$(document).ready(function(){
+  var lat, longe, location; 
+  
+  if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    location = $("#geoloc").html(position.cooords.latitude +"<br>" + position.coords.longitude);
+  });
+   lat = position.coords.latitude;
+   longe = position.coords.longitude;
+  }
+  
+  var weatherURL = "http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+longe +"&appid=cdb2c1e87ecc3c76139f393c3b0b127e"; //API key from open weather cdb2c1e87ecc3c76139f393c3b0b127e
+  
+  $.getJSON(weatherURL, function(json){
+		$("#temp").text(json.main.temp +"&degK");
+		location.html(json.name);
+  }); 
+  
+ 
+  
+  
+}); // document ready function
+
+/*
+if("geolocation" in navigator){
+	navigator.geolocation.getCurrentPosition(function(position){
+		openWeather(position.coords.latitude + position.coords.longitude);
+	});
+} else{
+	openWeather("Westlake, US", "");
+}
+
+$(document).ready(function()){
+	function openWeather(location, woeid){
+		
+	});
+}
+*/
+
+
+
+</script>
+</head>
+
+<body>
+<div class="container">
+  <h2>Local Weather</h2> 
+  <div>
+  <p id="geoloc"></p>
+  <p id="temp"></p>
+  <p id="weather"></p>
+  </div>
+  <div>
+  
+  </div>
+   
+</div>
+</body>
+
+</html>
+
+<!-- ipinfo.io for some info-->
+
+<!--
+sunny sky photo url https://static.pexels.com/photos/3768/sky-sunny-clouds-cloudy.jpg
+
+blue sky white clouds:  https://static.pexels.com/photos/96377/pexels-photo-96377.jpeg
+
+Cloudy sky        http://www.threepullpa.com/data/uploads/16/334773-cloudy-sky-rainly.jpg
+Overcast  https://static.pexels.com/photos/68800/clouds-sky-water-lake-68800.jpeg
+
+Rain  https://static.pexels.com/photos/27629/pexels-photo-27629.jpg
+
+snow http://www.threepullpa.com/data/uploads/59/488131-snow-fall-background.jpg  ; https://static.pexels.com/photos/4022/cold-snow-forest-trees.jpeg
+
+hot desert  https://static.pexels.com/photos/172144/pexels-photo-172144.jpeg ; 
+
+scattered clouds   https://static.pexels.com/photos/197505/pexels-photo-197505.jpeg
+
+-->
+
+
+
+
+
+

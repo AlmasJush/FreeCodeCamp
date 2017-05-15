@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<!-- http://codepen.io/kuxkac89/pen/RpMxjG -->
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+ var twitQuotes, randNum;
+  var quoteArr = [];
+  
+  function quotes(){
+  quoteArr=["\"There is only one happiness in this life, to love and be loved.\" -George Sand", "\"Only I can change my life. No one can do it for me.\" - Carol Burnett", 
+	"\"The secrect of getting ahead is getting startd.\" -Mark Twain", "\"If you can dream it, you can do it.\" -Walt Disney", 
+	"\"I can't change the direction of the wind, but I can adjust my sails to always reach my destination.\" -Jimmy Dean", 
+	"\"Once you replace negative thoughts with positive ones, you will start having positive results.\" -Willie Nelson", "\"Start where you are. Use what you have. Do what you can.\" -Arthur Ashe",
+	"\"Life is 10\% what happens to you and 90\% how you react to it.\" -Charles R. Swindoll", "\"Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work.\" -Steve Jobs",
+	"\"The only way to do great work is to love what you do. If you haven\'t found it yet, keep looking. As with all matters of the heart, you\'ll know when you find it.\" -Steve Jobs",
+	"\"Even if you are in the right track, you\'ll get run over if you just sit there.\" -Will Rogers", "\"Always forgive your enemies; nothing annoys them so much.\" -Oscar Wilde"];
+  
+  randNum = Math.floor(Math.random()*(quoteArr.length));
+    twitQuotes = quoteArr[randNum];
+  $(".message").text(twitQuotes);
+  }
+  
+  $("#newQuote").on("click", function(){
+   quotes();                            
+    });
+  
+  $("#twit").on("click", function(){
+    window.open("https://twitter.com/intent/tweet?text="+twitQuotes);
+  });
+  
+});
+</script>
+<style>
+body{
+  background-color: #F0E68C;
+}
+h2{
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.container-fluid{
+  height: auto;
+  width: 50%;
+  background-color: #F0E68C;
+}
+#wellQuote{
+  height: auto;
+  width: 100%;
+  background-color: #87CEEB;
+}
+#newQuote{
+  background-color: #008000;
+  color: #FFFFFF;
+  margin-left: 1px;
+}
+#twit{
+  margin-left: auto;
+  background-color: #1E90FF;
+}
+.message{
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 16px;
+  color: #000000;
+  }  
+#wellBtn{
+	background-color: #F0E68C;
+	height: 100%;
+	width: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div id="welcome" class="row text-primary ">
+  <h2><strong>Welcome to Random Quote Machine</strong></h2>
+</div>
+
+<div class="row text-center">
+  <div id="wellQuote"class="col-xs-7 well quotes"> 
+    <p class="message">quote goes here</p>
+	</div>
+</div>
+
+<div class="row text-center">
+	<div id="wellBtn" class="col-xs-4">
+	<button id="newQuote" class="btn btn-primary">New Quote</button>
+	
+	<button id="twit" class="btn btn-responsive btn-primary"><i class="fa fa-twitter" area-hidden="true"></i>
+	</button>
+   
+  <div class="text-info text-center">
+      <p><strong>By ALMAS</strong></p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
